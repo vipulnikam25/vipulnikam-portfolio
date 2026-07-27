@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Resume analysis machine learning background">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#365314"/>
+      <stop offset=".5" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#134e4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="520" fill="url(#bg)"/>
+  <rect x="124" y="78" width="250" height="360" rx="28" fill="#f8fafc" opacity=".9"/>
+  <rect x="160" y="132" width="150" height="18" rx="9" fill="#0f172a" opacity=".75"/>
+  <rect x="160" y="184" width="178" height="12" rx="6" fill="#0f172a" opacity=".35"/>
+  <rect x="160" y="220" width="148" height="12" rx="6" fill="#0f172a" opacity=".35"/>
+  <rect x="160" y="256" width="178" height="12" rx="6" fill="#0f172a" opacity=".35"/>
+  <rect x="160" y="316" width="92" height="92" rx="24" fill="#14b8a6" opacity=".85"/>
+  <g fill="none" stroke="#bef264" stroke-width="5" stroke-linecap="round">
+    <path d="M374 196h128M374 320h128"/>
+    <path d="M502 196c70 0 70 124 140 124"/>
+    <path d="M502 320c70 0 70-124 140-124"/>
+  </g>
+  <g fill="#0f172a" stroke="#bef264" stroke-width="4">
+    <circle cx="508" cy="196" r="28"/>
+    <circle cx="508" cy="320" r="28"/>
+    <circle cx="646" cy="196" r="38"/>
+    <circle cx="646" cy="320" r="38"/>
+    <circle cx="758" cy="258" r="54"/>
+  </g>
+  <g fill="#67e8f9">
+    <circle cx="758" cy="258" r="15"/>
+    <circle cx="646" cy="196" r="11"/>
+    <circle cx="646" cy="320" r="11"/>
+  </g>
+</svg>

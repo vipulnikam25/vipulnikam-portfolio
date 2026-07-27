@@ -1,81 +1,112 @@
 import {
   Award,
   BrainCircuit,
-  BriefcaseBusiness,
   Cloud,
   Code2,
   Database,
+  Facebook,
   Github,
   GraduationCap,
+  Instagram,
   Linkedin,
   Mail,
   MapPin,
   Phone,
   ServerCog,
+  Twitter,
   Workflow,
 } from "lucide-react";
+import csvAnalyticsImage from "@/assets/projects/csv-analytics.svg";
+import healthMlImage from "@/assets/projects/health-ml.svg";
+import microserviceImage from "@/assets/projects/microservice.svg";
+import personaMlImage from "@/assets/projects/persona-ml.svg";
+import studentFeedbackImage from "@/assets/projects/student-feedback.svg";
 
 export const profile = {
   name: "Vipul Nikam",
   initials: "VN",
-  role: "Backend & Data Engineer",
+  role: "Associate Data Engineer",
   location: "Pune, Maharashtra, India",
   email: "vipulnikam0925@gmail.com",
+  gmailComposeUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=vipulnikam0925@gmail.com",
   phone: "+91 8208106900",
   phoneHref: "tel:+918208106900",
   whatsapp: "https://wa.me/918208106900",
   resumeUrl: "/vipul-nikam-resume-2026-july.pdf",
+  imageUrl: "/profile-pic.png",
   github: "https://github.com/vipulnikam25",
   linkedin: "https://www.linkedin.com/in/vipul-nikam-b06ab8212/",
+  facebook: "https://www.facebook.com/vipul.nikam.526/",
+  instagram: "https://www.instagram.com/_.skipperrr._?igsh=MXd4Mnd1ZjQ5NmdnZA==",
+  x: "https://x.com/skipperr25",
   headline:
-    "I build production-grade APIs, cloud data pipelines, and automation systems that turn scattered business data into reliable products.",
+    "I build data pipelines, AI/ML solutions, Python applications, backend APIs, and automation workflows that solve real business problems across cloud and production systems.",
   summary:
-    "Backend and Data Engineer with 2+ years of hands-on experience building REST APIs, ETL pipelines, cloud-native services, microservices, multi-tenant systems, and automation workflows across Python, Node.js, FastAPI, Fastify, TypeScript, Go, SQL, AWS, and Azure.",
+    "Data Engineer with 2+ years of hands-on experience across ETL pipelines, AI/ML solutions, Python development, REST APIs, cloud-native services, microservices, multi-tenant systems, and automation workflows using Python, Node.js, FastAPI, Fastify, TypeScript, Go, SQL, AWS, and Azure.",
+  speechSummary:
+    "Hi, I am Vipul Nikam, a Data Engineer with strong experience in AI, machine learning, Python development, backend APIs, cloud data platforms, and automation. I enjoy building practical systems that turn data, workflows, and business problems into reliable software solutions.",
 };
 
 export const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Work", href: "#projects" },
+  { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Proof", href: "#proof" },
+  { label: "Education", href: "#education" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const socialLinks = [
   { label: "GitHub", href: profile.github, icon: Github },
   { label: "LinkedIn", href: profile.linkedin, icon: Linkedin },
-  { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
+  { label: "Facebook", href: profile.facebook, icon: Facebook },
+  { label: "Instagram", href: profile.instagram, icon: Instagram },
+  { label: "X", href: profile.x, icon: Twitter },
+  { label: "Email", href: profile.gmailComposeUrl, icon: Mail },
   { label: "Phone", href: profile.phoneHref, icon: Phone },
 ];
 
 export const heroRoles = [
-  "Backend Engineer",
   "Data Engineer",
-  "Cloud ETL Builder",
-  "Microservices Developer",
-  "Automation Engineer",
+  "Backend Developer",
+  "AI/ML Engineer",
+  "Python Developer",
+  "Software Engineer",
 ];
 
 export const metrics = [
-  { value: "2+", label: "Years building production systems" },
-  { value: "50+", label: "REST APIs delivered across modules" },
+  { value: "2+", label: "Years across data, AI/ML, Python, and backend work" },
+  { value: "50+", label: "REST APIs delivered across business modules" },
   { value: "100+", label: "SQL procedures migrated into Go APIs" },
   { value: "6", label: "Business modules shipped for AUTOLINK" },
 ];
 
 export const focusAreas = [
   {
-    icon: ServerCog,
-    title: "Backend Systems",
-    description:
-      "FastAPI, Node.js, Fastify, TypeScript, Go, authentication, REST architecture, and modular services.",
-  },
-  {
     icon: Workflow,
     title: "Data Engineering",
     description:
       "ETL pipelines, data cleaning, orchestration, Databricks, Synapse, Redshift, Glue, Athena, and analytics workflows.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "AI / ML",
+    description:
+      "RAG chatbots, LLM integrations, predictive modeling, Scikit-Learn, PyTorch, TensorFlow, and applied ML projects.",
+  },
+  {
+    icon: Code2,
+    title: "Python Development",
+    description:
+      "Python services, FastAPI microservices, Django apps, data processing, automation scripts, and analytics tooling.",
+  },
+  {
+    icon: ServerCog,
+    title: "Backend APIs",
+    description:
+      "Node.js, Fastify, TypeScript, Go, authentication, REST architecture, modular services, and database-backed APIs.",
   },
   {
     icon: Cloud,
@@ -84,28 +115,18 @@ export const focusAreas = [
       "Hands-on delivery across Azure and AWS for data storage, job automation, IAM, lakehouse, and serverless flows.",
   },
   {
-    icon: BrainCircuit,
-    title: "AI + Automation",
+    icon: Workflow,
+    title: "Automation",
     description:
-      "RAG chatbots, LLM integrations, predictive modeling, UiPath bots, web scraping, and business process automation.",
+      "UiPath bots, KYC workflows, web scraping, data extraction tools, notifications, and business process automation.",
   },
 ];
 
 export const skillGroups = [
   {
-    title: "Backend",
-    icon: Code2,
-    skills: ["Python", "Node.js", "FastAPI", "Fastify", "Express.js", "TypeScript", "Go", "REST APIs"],
-  },
-  {
     title: "Data Engineering",
     icon: Workflow,
     skills: ["ETL", "Azure Data Factory", "Databricks", "Synapse", "AWS Glue", "Athena", "Redshift", "Data Lake"],
-  },
-  {
-    title: "Databases",
-    icon: Database,
-    skills: ["SQL", "MongoDB", "MySQL", "PostgreSQL", "SQL Server", "Stored Procedures", "Database Migration"],
   },
   {
     title: "AI / ML",
@@ -113,14 +134,24 @@ export const skillGroups = [
     skills: ["RAG", "LLMs", "LangChain", "Llama 3.2", "Scikit-Learn", "PyTorch", "TensorFlow", "Predictive Modeling"],
   },
   {
-    title: "Automation",
-    icon: Workflow,
-    skills: ["UiPath Studio", "UiPath Orchestrator", "KYC Bots", "Web Scraping", "Data Extraction", "Power BI"],
+    title: "Python",
+    icon: Code2,
+    skills: ["Python", "FastAPI", "Django", "Pandas", "NumPy", "Matplotlib", "Jupyter", "Automation Scripts"],
   },
   {
-    title: "Foundations",
+    title: "Backend",
     icon: ServerCog,
-    skills: ["OOP", "DSA", "DBMS", "Machine Learning", "Deep Learning", "Git", "VS Code", "Jupyter"],
+    skills: ["Node.js", "Fastify", "Express.js", "TypeScript", "Go", "REST APIs", "JWT", "RBAC"],
+  },
+  {
+    title: "Databases",
+    icon: Database,
+    skills: ["SQL", "MongoDB", "MySQL", "PostgreSQL", "SQL Server", "Stored Procedures", "Database Migration"],
+  },
+  {
+    title: "Tools + Foundations",
+    icon: Cloud,
+    skills: ["AWS", "Azure", "UiPath Studio", "Power BI", "OOP", "DSA", "DBMS", "Git"],
   },
 ];
 
@@ -128,9 +159,11 @@ export const experiences = [
   {
     role: "Associate Data Engineer",
     company: "Plainsurf Solutions PVT",
+    companyUrl: "https://plainsurf.com/",
+    companyMark: "PS",
     location: "Pune, Maharashtra, India",
     period: "April 2025 - Present",
-    type: "Full-time",
+    type: "Full-time - Backend, Data, Cloud & Automation Projects",
     highlights: [
       "Enhanced the RAK-Mustawi platform by implementing multi-tenant architecture and optimizing Node.js backend services with React.js frontend improvements.",
       "Introduced WhatsApp notifications into the ECOEFX backend, automating customer communication workflows using Go.",
@@ -143,6 +176,8 @@ export const experiences = [
   {
     role: "Data Engineer Intern",
     company: "Plainsurf Solutions PVT",
+    companyUrl: "https://plainsurf.com/",
+    companyMark: "PS",
     location: "Pune, Maharashtra, India",
     period: "September 2024 - March 2025",
     type: "Internship",
@@ -160,74 +195,97 @@ export const experiences = [
 export const projects = [
   {
     title: "Multi-Database CRUD Microservice",
-    eyebrow: "Production Backend",
+    eyebrow: "API Microservice",
     period: "September 2024 - October 2024",
     description:
-      "FastAPI microservice supporting MySQL, PostgreSQL, and MongoDB operations with JWT authentication, RBAC, modular configuration, and integration tests.",
-    impact: "Built as a scalable backend foundation for secure multi-database business workflows.",
+      "Designed and implemented a production-ready FastAPI service that connects with MySQL, PostgreSQL, and MongoDB through a modular backend structure. The project focuses on secure CRUD operations, consistent API behavior, reusable database configuration, JWT authentication, and role-based access control.",
+    impact: "Created a flexible backend foundation for teams that need one secure service layer across multiple database engines.",
     stack: ["FastAPI", "Python", "JWT", "RBAC", "MySQL", "PostgreSQL", "MongoDB"],
     github: "https://github.com/vipulnikam25/Database-Connection-Microservice",
+    image: microserviceImage,
     accent: "cyan",
-    featured: true,
   },
   {
     title: "CSV Analysis Using Django",
-    eyebrow: "Data Product",
+    eyebrow: "Data Analytics",
     period: "December 2024 - January 2025",
     description:
-      "Django app for uploading CSV files, cleaning datasets, generating statistics, and rendering six interactive chart types with AJAX interactions.",
-    impact: "Turned raw CSV data into quick, browser-based analysis and visualization flows.",
+      "Built a Django-based analytics application where users can upload CSV datasets, clean missing values, normalize date and numeric fields, generate descriptive statistics, and choose dynamic visualizations. AJAX interactions keep the analysis flow responsive without forcing full page reloads.",
+    impact: "Turned raw spreadsheet-style data into a faster browser-based analysis and reporting workflow.",
     stack: ["Django", "Python", "Pandas", "AJAX", "Data Visualization", "Statistics"],
     github: "https://github.com/vipulnikam25/Django-CSV-Analysis-Project",
+    image: csvAnalyticsImage,
     accent: "teal",
-    featured: true,
   },
   {
     title: "Persona Prediction Via Resume Analysis",
     eyebrow: "Machine Learning",
     period: "November 2022 - February 2023",
     description:
-      "Recruiting system that analyzes resumes and online assessment data to predict candidate suitability using Logistic Regression and Random Forest models.",
-    impact: "Published research-backed project for candidate persona forecasting and automated screening.",
+      "Created a recruitment-focused ML system that analyzes resume data and online assessment results to forecast candidate personas and suitability. The solution applies preprocessing, feature extraction, Logistic Regression, and Random Forest classification to support more structured screening decisions.",
+    impact: "Extended into a published research project on candidate persona forecasting through resume/CV analysis.",
     stack: ["Python", "Machine Learning", "Scikit-Learn", "Logistic Regression", "Random Forest"],
     github: "https://github.com/vipulnikam25/Persona-Prediction-Via-Resume-Analysis-Using-ML",
+    image: personaMlImage,
     accent: "lime",
-    featured: true,
   },
   {
     title: "Parkinson's Disease Detection",
     eyebrow: "Predictive ML",
     period: "June 2022 - August 2022",
     description:
-      "Python ML model using XGBoost to predict Parkinson's disease presence from scaled features with strong classification performance.",
-    impact: "Demonstrated applied ML for healthcare-oriented prediction.",
+      "Developed a healthcare-oriented machine learning model using Python and XGBoost to classify Parkinson's disease presence from structured biomedical features. The workflow includes data scaling, train-test validation, model fitting, and performance-focused evaluation.",
+    impact: "Demonstrated practical AI/ML ability in a sensitive, real-world prediction domain.",
     stack: ["Python", "XGBoost", "Classification", "Feature Scaling"],
     github: profile.github,
+    image: healthMlImage,
     accent: "blue",
-    featured: false,
   },
   {
     title: "Student Feedback System",
     eyebrow: "Full Stack",
     period: "April 2022 - May 2022",
     description:
-      "Web application for collecting student feedback and generating faculty reports from structured responses.",
-    impact: "Built an early full-stack workflow for academic reporting.",
+      "Built a web application for collecting student feedback, organizing structured responses, and generating faculty-level reports. The project helped translate a manual academic feedback workflow into a cleaner browser-based reporting system.",
+    impact: "Strengthened early full-stack fundamentals around forms, reporting, and user-facing workflows.",
     stack: ["HTML", "CSS", "JavaScript", "Full Stack"],
     github: profile.github,
+    image: studentFeedbackImage,
     accent: "slate",
-    featured: false,
   },
 ];
 
-export const education = {
-  icon: GraduationCap,
-  school: "RMD Sinhgad School of Engineering",
-  location: "Pune, Maharashtra, India",
-  degree: "Bachelor of Engineering in Information Technology",
-  period: "August 2019 - July 2023",
-  detail: "CGPA: 8.45",
-};
+export const education = [
+  {
+    icon: GraduationCap,
+    level: "Bachelor's Degree",
+    school: "RMD Sinhgad School of Engineering",
+    location: "Pune, Maharashtra, India",
+    board: "Savitribai Phule Pune University",
+    stream: "Information Technology",
+    period: "August 2019 - July 2023",
+    detail: "CGPA: 8.45",
+  },
+  {
+    icon: GraduationCap,
+    level: "HSC",
+    school: "Fellowship Mission School",
+    location: "Vapi, Gujarat, India",
+    board: "CBSE",
+    stream: "Science",
+    period: "Higher Secondary",
+    detail: "Percentage: 60%",
+  },
+  {
+    icon: GraduationCap,
+    level: "SSC",
+    school: "Fellowship Mission School",
+    location: "Vapi, Gujarat, India",
+    board: "CBSE",
+    period: "Secondary School",
+    detail: "CGPA: 9.6",
+  },
+];
 
 export const certifications = [
   {
@@ -288,9 +346,10 @@ export const publication = {
 };
 
 export const contactCards = [
-  { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
+  { label: "Email", value: profile.email, href: profile.gmailComposeUrl, icon: Mail },
   { label: "Phone", value: profile.phone, href: profile.phoneHref, icon: Phone },
   { label: "Location", value: profile.location, href: "#home", icon: MapPin },
   { label: "GitHub", value: "github.com/vipulnikam25", href: profile.github, icon: Github },
   { label: "LinkedIn", value: "linkedin.com/in/vipul-nikam-b06ab8212", href: profile.linkedin, icon: Linkedin },
+  { label: "X", value: "x.com/skipperr25", href: profile.x, icon: Twitter },
 ];

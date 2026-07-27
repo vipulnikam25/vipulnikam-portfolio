@@ -9,7 +9,7 @@ export function AboutSection() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <SectionHeading
             eyebrow="About"
-            title="Engineering useful systems where backend, data, and automation meet."
+            title="Building intelligent data, AI, Python, and backend systems for real-world business workflows."
             description={profile.summary}
           />
 

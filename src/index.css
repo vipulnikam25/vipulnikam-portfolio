@@ -138,31 +138,99 @@
   .project-card {
     @apply relative flex h-full min-h-[19rem] overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl transform-gpu transition md:p-7;
   }
+
+  .avatar-stage {
+    perspective: 1100px;
+  }
+
+  .avatar-card {
+    transform-style: preserve-3d;
+  }
+
+  .floating-tag {
+    @apply absolute z-20 rounded-full border border-primary/30 bg-background/80 px-3 py-2 text-xs font-bold text-foreground shadow-xl backdrop-blur;
+  }
+
+  .tag-0 {
+    left: 8%;
+    top: 24%;
+  }
+
+  .tag-1 {
+    right: 7%;
+    top: 20%;
+  }
+
+  .tag-2 {
+    left: 5%;
+    top: 48%;
+  }
+
+  .tag-3 {
+    right: 5%;
+    top: 46%;
+  }
+
+  .tag-4 {
+    left: 14%;
+    bottom: 28%;
+  }
+
+  .tag-5 {
+    right: 13%;
+    bottom: 30%;
+  }
+
+  .tag-6 {
+    left: 34%;
+    top: 13%;
+  }
+
+  .tag-7 {
+    right: 32%;
+    bottom: 23%;
+  }
 }
 
 @keyframes role-swap {
   0%,
-  15% {
+  12% {
     transform: translateY(0);
   }
-  20%,
-  35% {
+  16%,
+  28% {
     transform: translateY(-2.5rem);
   }
-  40%,
-  55% {
+  32%,
+  44% {
     transform: translateY(-5rem);
   }
-  60%,
-  75% {
+  48%,
+  60% {
     transform: translateY(-7.5rem);
   }
-  80%,
-  95% {
+  64%,
+  76% {
     transform: translateY(-10rem);
+  }
+  80%,
+  92% {
+    transform: translateY(-12.5rem);
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .floating-tag {
+    @apply px-2.5 py-1.5 text-[0.68rem];
+  }
+
+  .tag-2,
+  .tag-3,
+  .tag-7 {
+    display: none;
   }
 }
 

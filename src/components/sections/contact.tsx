@@ -11,12 +11,14 @@ export function ContactSection() {
           <div>
             <SectionHeading
               eyebrow="Contact"
-              title="Let's build reliable systems with a little visual electricity."
-              description="Open to backend, data engineering, cloud, automation, and full-stack backend-heavy opportunities."
+              title="Let's build intelligent data, AI, Python, and software systems."
+              description="Open to Data Engineering, AI/ML Engineering, Python Development, Backend Engineering, Backend Developer, and Software Development opportunities."
             />
             <Reveal delay={0.08} className="mt-8 flex flex-col gap-4 sm:flex-row">
               <a
-                href={`mailto:${profile.email}`}
+                href={profile.gmailComposeUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_20px_60px_hsl(var(--primary)/0.25)] transition hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Send className="mr-2 h-4 w-4" />

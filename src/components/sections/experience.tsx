@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/common/reveal";
 import { SectionHeading } from "@/components/common/section-heading";
 import { experiences } from "@/data/portfolio";
-import { BriefcaseBusiness, Calendar, MapPin } from "lucide-react";
+import { BriefcaseBusiness, Calendar, ExternalLink, MapPin } from "lucide-react";
 
 export function ExperienceSection() {
   return (
@@ -34,7 +34,23 @@ export function ExperienceSection() {
                       <h3 className="mt-3 text-2xl font-semibold text-foreground sm:text-3xl">
                         {experience.role}
                       </h3>
-                      <p className="mt-2 text-lg font-medium text-muted-foreground">{experience.company}</p>
+                      <a
+                        href={experience.companyUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-4 inline-flex items-center gap-3 rounded-2xl border border-border/70 bg-background/60 px-4 py-3 text-left transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary text-sm font-black text-primary-foreground">
+                          {experience.companyMark}
+                        </span>
+                        <span>
+                          <span className="block text-base font-semibold text-foreground">{experience.company}</span>
+                          <span className="mt-1 inline-flex items-center text-sm text-muted-foreground">
+                            plainsurf.com
+                            <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                          </span>
+                        </span>
+                      </a>
                     </div>
                     <div className="grid gap-2 text-sm text-muted-foreground">
                       <span className="inline-flex items-center gap-2">
