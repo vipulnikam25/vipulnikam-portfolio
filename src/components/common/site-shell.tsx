@@ -1,5 +1,5 @@
 import { ThemeToggle } from "@/components/common/theme-toggle";
-import { navItems, profile, socialLinks } from "@/data/portfolio";
+import { navItems, profile } from "@/data/portfolio";
 import { Download, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -70,20 +70,6 @@ export function SiteNav() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden items-center gap-1 lg:flex">
-              {socialLinks.slice(0, 5).map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={item.label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <item.icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
             <a
               href={profile.resumeUrl}
               download
@@ -121,20 +107,6 @@ export function SiteNav() {
                 {item.label}
               </button>
             ))}
-            <div className="mt-2 flex flex-wrap gap-2 border-t border-border pt-4">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="inline-flex items-center rounded-full border border-border px-3 py-2 text-xs font-semibold text-muted-foreground"
-                >
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {item.label}
-                </a>
-              ))}
-            </div>
             <a
               href={profile.resumeUrl}
               download

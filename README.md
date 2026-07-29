@@ -47,7 +47,7 @@ Most portfolio content lives in `src/data/portfolio.ts`. Update that file to cha
 
 The downloadable resume is served from `public/vipul-nikam-resume-2026-july.pdf`.
 
-The footer visitor count is browser-local only. It increments once per browser session and does not represent global unique visitors because no backend or analytics service is configured.
+The contact form opens a Gmail compose draft. Direct SMTP delivery should be implemented through a serverless/backend endpoint so credentials are not exposed to the browser.
 
 ## Deployment
 

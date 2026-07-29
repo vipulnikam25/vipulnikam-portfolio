@@ -15,8 +15,27 @@ export function SkillsSection() {
             title="A stack built for APIs, pipelines, cloud data, and automation."
             description="Skills are grouped by how they show up in production work, not as a flat resume dump."
           />
-          <Reveal className="rounded-3xl border border-border/70 bg-card/70 p-5 text-sm leading-7 text-muted-foreground shadow-sm backdrop-blur lg:max-w-sm">
-            Strongest signal: backend services, ETL workflows, cloud data platforms, database migration, and RAG/automation systems.
+          <Reveal className="skill-orbit-panel">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.18),transparent_42%)]" />
+            <div className="relative z-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Skill Motion Map</p>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                Data, AI/ML, Python, backend, cloud, and automation tools moving together as one working stack.
+              </p>
+            </div>
+            <div className="relative mt-6 h-56 overflow-hidden rounded-2xl border border-border/70 bg-background/55">
+              {skillGroups.map((group, index) => (
+                <motion.div
+                  key={group.title}
+                  className={`skill-float skill-float-${index}`}
+                  animate={reduceMotion ? undefined : { x: [0, index % 2 ? 18 : -18, 0], y: [0, index % 2 ? -14 : 14, 0] }}
+                  transition={{ duration: 4 + index * 0.45, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <group.icon className="h-5 w-5" />
+                  <span>{group.title}</span>
+                </motion.div>
+              ))}
+            </div>
           </Reveal>
         </div>
 

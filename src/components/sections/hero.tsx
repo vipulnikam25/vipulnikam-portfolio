@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/common/reveal";
-import { heroRoles, metrics, profile, socialLinks } from "@/data/portfolio";
+import { heroRoles, metrics, openToRoles, profile, socialLinks } from "@/data/portfolio";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, Mic2, Send, Volume2 } from "lucide-react";
 import { useState } from "react";
@@ -10,21 +10,22 @@ function scrollToContact() {
   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function speakSummary() {
-  if (!("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(profile.speechSummary);
-  utterance.rate = 0.92;
-  utterance.pitch = 1;
-  window.speechSynthesis.speak(utterance);
-}
-
 export function HeroSection() {
   const reduceMotion = useReducedMotion();
   const [hasSpoken, setHasSpoken] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleSpeak = () => {
-    speakSummary();
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(profile.speechSummary);
+      utterance.rate = 0.92;
+      utterance.pitch = 1;
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      window.speechSynthesis.speak(utterance);
+    }
     setHasSpoken(true);
   };
 
@@ -37,15 +38,6 @@ export function HeroSection() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
           <div className="max-w-4xl">
-            <Reveal>
-              <div className="mb-6 inline-flex max-w-full items-center gap-3 rounded-full border border-border/70 bg-card/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-primary shadow-[0_0_16px_hsl(var(--primary))]" />
-                <span className="text-pretty">
-                  Open to Data Engineering, AI/ML Engineering, Python Development, Backend Engineering, Backend Developer, and Software Development roles.
-                </span>
-              </div>
-            </Reveal>
-
             <Reveal delay={0.05}>
               <h1 className="text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-7xl lg:text-8xl">
                 {profile.name}
@@ -54,6 +46,13 @@ export function HeroSection() {
 
             <Reveal delay={0.1}>
               <div className="mt-5 flex flex-col gap-3 text-xl font-semibold text-muted-foreground sm:text-3xl">
+                <div className="flex flex-wrap gap-2 text-sm">
+                  {openToRoles.map((role) => (
+                    <span key={role} className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 font-semibold text-primary">
+                      {role}
+                    </span>
+                  ))}
+                </div>
                 <span>{profile.role}</span>
                 <span className="relative inline-flex h-10 max-w-full overflow-hidden text-primary">
                   <span className={reduceMotion ? "" : "role-rotator"}>
@@ -112,7 +111,7 @@ export function HeroSection() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.18} className="relative min-h-[31rem] lg:min-h-[38rem]">
+          <Reveal delay={0.18} className="relative min-h-[34rem] lg:min-h-[40rem]">
             <div className="absolute inset-0 rounded-[2rem] border border-border/70 bg-card/50 shadow-2xl backdrop-blur-xl" />
             <div className="avatar-stage absolute inset-3 overflow-hidden rounded-[1.6rem] border border-white/10">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,hsl(var(--primary)/0.24),transparent_34%),linear-gradient(145deg,hsl(var(--card)),hsl(var(--muted)))]" />
@@ -132,20 +131,36 @@ export function HeroSection() {
                 </motion.span>
               ))}
 
-              <div className="absolute inset-x-0 bottom-24 top-20 z-10 grid place-items-center">
+              <div className="absolute inset-y-20 right-4 z-30 flex flex-col justify-center gap-3">
+                {socialLinks.slice(0, 5).map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={item.label}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-background/80 text-muted-foreground shadow-lg backdrop-blur transition hover:-translate-x-1 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <item.icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+
+              <div className="absolute inset-x-0 bottom-24 top-16 z-10 grid place-items-center">
                 <motion.div
-                  className="avatar-card relative h-72 w-72 rounded-[2rem] border border-primary/30 bg-background/40 p-3 shadow-[0_34px_90px_hsl(var(--primary)/0.22)] backdrop-blur md:h-80 md:w-80"
+                  className={`avatar-card relative h-80 w-80 rounded-[2rem] border border-primary/30 bg-background/40 p-3 shadow-[0_34px_90px_hsl(var(--primary)/0.22)] backdrop-blur md:h-96 md:w-96 ${isSpeaking ? "is-speaking" : ""}`}
                   animate={reduceMotion ? undefined : { rotateY: [-4, 4, -4], rotateX: [2, -2, 2] }}
                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <img
-                    src={profile.imageUrl}
-                    alt="Vipul Nikam"
+                    src={profile.avatarUrl}
+                    alt="3D avatar of Vipul Nikam"
                     className="h-full w-full rounded-[1.45rem] object-cover"
                   />
+                  <span className="mouth-pulse" aria-hidden="true" />
                   <div className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-background/90 px-4 py-2 text-sm font-semibold text-foreground shadow-xl backdrop-blur">
                     <span className="h-2 w-2 rounded-full bg-primary" />
-                    Data + AI + Python
+                    {isSpeaking ? "Introducing..." : "3D Portfolio Avatar"}
                   </div>
                 </motion.div>
               </div>

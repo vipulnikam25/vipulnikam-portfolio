@@ -34,6 +34,7 @@ export const profile = {
   whatsapp: "https://wa.me/918208106900",
   resumeUrl: "/vipul-nikam-resume-2026-july.pdf",
   imageUrl: "/profile-pic.png",
+  avatarUrl: "/avatar-3d.png",
   github: "https://github.com/vipulnikam25",
   linkedin: "https://www.linkedin.com/in/vipul-nikam-b06ab8212/",
   facebook: "https://www.facebook.com/vipul.nikam.526/",
@@ -46,6 +47,15 @@ export const profile = {
   speechSummary:
     "Hi, I am Vipul Nikam, a Data Engineer with strong experience in AI, machine learning, Python development, backend APIs, cloud data platforms, and automation. I enjoy building practical systems that turn data, workflows, and business problems into reliable software solutions.",
 };
+
+export const openToRoles = [
+  "Data Engineering",
+  "AI/ML Engineering",
+  "Python Development",
+  "Backend Engineering",
+  "Backend Developer",
+  "Software Development",
+];
 
 export const navItems = [
   { label: "Home", href: "#home" },
