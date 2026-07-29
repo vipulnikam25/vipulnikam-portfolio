@@ -19,14 +19,14 @@ export function CredentialsSection() {
           <div className="grid gap-5 lg:grid-cols-3">
             {education.map((item, index) => (
               <Reveal key={`${item.level}-${item.school}`} delay={index * 0.06}>
-                <article className="h-full rounded-3xl border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl">
+                <article className="flex h-full min-h-[24rem] flex-col rounded-3xl border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl">
                   <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
                     <item.icon className="h-6 w-6" />
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">{item.level}</p>
                   <h3 className="mt-3 text-2xl font-semibold text-foreground">{item.school}</h3>
                   <p className="mt-2 text-muted-foreground">{item.stream}</p>
-                  <div className="mt-6 grid gap-3 rounded-2xl border border-border/70 bg-background/60 p-4 text-sm text-muted-foreground">
+                  <div className="mt-auto grid gap-3 rounded-2xl border border-border/70 bg-background/60 p-4 text-sm text-muted-foreground">
                     <span>{item.board}</span>
                     <span>{item.location}</span>
                     <span>{item.period}</span>

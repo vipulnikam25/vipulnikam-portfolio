@@ -30,7 +30,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.05}>
               <motion.article
-                className="project-card group min-h-[36rem]"
+                className="project-card group min-h-[42rem]"
                 whileHover={reduceMotion ? undefined : { y: -8 }}
                 transition={{ duration: 0.25 }}
               >
@@ -42,26 +42,26 @@ export function ProjectsSection() {
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover opacity-88 transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-background/15 to-background/88" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/62 to-background" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">
+                      <p className="inline-flex rounded-full border border-primary/40 bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur">
                         {project.eyebrow}
                       </p>
-                      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+                      <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white drop-shadow">
                         {project.title}
                       </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{project.period}</p>
+                      <p className="mt-2 text-sm font-medium text-white/82 drop-shadow">{project.period}</p>
                     </div>
                   </div>
 
-                  <p className="text-pretty text-sm leading-7 text-muted-foreground">
+                  <p className="min-h-[11rem] text-pretty text-sm leading-7 text-muted-foreground">
                     {project.description}
                   </p>
-                  <p className="mt-5 rounded-2xl border border-border/70 bg-background/55 p-4 text-sm font-medium leading-7 text-foreground">
+                  <p className="mt-5 min-h-[7rem] rounded-2xl border border-border/70 bg-background/70 p-4 text-sm font-medium leading-7 text-foreground">
                     {project.impact}
                   </p>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-6 flex min-h-[5.5rem] flex-wrap content-start gap-2">
                     {project.stack.map((item) => (
                       <span
                         key={item}
