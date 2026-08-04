@@ -88,7 +88,7 @@ export const heroRoles = [
 
 export const metrics = [
   { value: "2+", label: "Years across data, AI/ML, Python, and backend work" },
-  { value: "50+", label: "REST APIs delivered across business modules" },
+  { value: "100+", label: "REST APIs delivered across business modules" },
   { value: "100+", label: "SQL procedures migrated into Go APIs" },
   { value: "6", label: "Business modules shipped for AUTOLINK" },
 ];

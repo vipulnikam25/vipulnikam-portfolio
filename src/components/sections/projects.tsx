@@ -36,25 +36,28 @@ export function ProjectsSection() {
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${accentClass[project.accent]} opacity-90`} />
                 <div className="relative z-10 flex h-full flex-col">
-                  <div className="relative -mx-6 -mt-6 mb-6 min-h-52 overflow-hidden rounded-t-[1.75rem] border-b border-border/70 md:-mx-7 md:-mt-7">
+                  <div className="relative -mx-6 -mt-6 mb-6 min-h-56 overflow-hidden rounded-t-[1.75rem] border-b border-border/70 bg-background md:-mx-7 md:-mt-7">
                     <img
                       src={project.image}
                       alt=""
-                      className="absolute inset-0 h-full w-full object-cover opacity-88 transition duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover object-center opacity-95 transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/62 to-background" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                      <p className="inline-flex rounded-full border border-primary/40 bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/45 via-transparent to-black/15" />
+                    <div className="absolute left-5 top-5">
+                      <p className="inline-flex rounded-full border border-primary/40 bg-background/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-lg backdrop-blur">
                         {project.eyebrow}
                       </p>
-                      <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white drop-shadow">
-                        {project.title}
-                      </h3>
-                      <p className="mt-2 text-sm font-medium text-white/82 drop-shadow">{project.period}</p>
                     </div>
                   </div>
 
-                  <p className="min-h-[11rem] text-pretty text-sm leading-7 text-muted-foreground">
+                  <div className="mb-5 min-h-[6.5rem]">
+                    <h3 className="text-2xl font-semibold tracking-tight text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-medium text-muted-foreground">{project.period}</p>
+                  </div>
+
+                  <p className="min-h-[12rem] text-pretty text-sm leading-7 text-muted-foreground">
                     {project.description}
                   </p>
                   <p className="mt-5 min-h-[7rem] rounded-2xl border border-border/70 bg-background/70 p-4 text-sm font-medium leading-7 text-foreground">
