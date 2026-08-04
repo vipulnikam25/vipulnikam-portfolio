@@ -1,4 +1,4 @@
-import { SiteNav } from "@/components/common/site-shell";
+import { FixedActionRail, SiteNav } from "@/components/common/site-shell";
 import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
 import { ExperienceSection } from "@/components/sections/experience";
@@ -12,6 +12,7 @@ const Index = () => {
   return (
     <div className="min-h-screen overflow-hidden bg-background text-foreground">
       <SiteNav />
+      <FixedActionRail />
       <HeroSection />
       <AboutSection />
       <SkillsSection />

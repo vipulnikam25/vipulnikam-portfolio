@@ -1,10 +1,8 @@
 import { Reveal } from "@/components/common/reveal";
-import { heroRoles, metrics, openToRoles, profile, socialLinks } from "@/data/portfolio";
+import { heroRoles, metrics, profile } from "@/data/portfolio";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, Mic2, Send, Volume2 } from "lucide-react";
 import { useState } from "react";
-
-const heroTags = ["Python", "AI/ML", "Data Pipelines", "FastAPI", "AWS", "Azure", "Backend APIs", "Automation"];
 
 function scrollToContact() {
   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -45,16 +43,9 @@ export function HeroSection() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-5 flex flex-col gap-3 text-xl font-semibold text-muted-foreground sm:text-3xl">
-                <div className="flex flex-wrap gap-2 text-sm">
-                  {openToRoles.map((role) => (
-                    <span key={role} className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 font-semibold text-primary">
-                      {role}
-                    </span>
-                  ))}
-                </div>
-                <span>{profile.role}</span>
-                <span className="relative inline-flex h-10 max-w-full overflow-hidden text-primary">
+              <div className="mt-5 flex flex-wrap items-center gap-3 text-xl font-semibold text-muted-foreground sm:text-3xl">
+                <span>Open to:</span>
+                <span className="relative inline-flex h-10 min-w-[18rem] max-w-full overflow-hidden text-primary">
                   <span className={reduceMotion ? "" : "role-rotator"}>
                     {heroRoles.map((role) => (
                       <span key={role} className="block h-10">
@@ -93,22 +84,6 @@ export function HeroSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.25}>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                {socialLinks.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                    aria-label={item.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground transition hover:-translate-y-1 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    <item.icon className="h-5 w-5" />
-                  </a>
-                ))}
-              </div>
-            </Reveal>
           </div>
 
           <Reveal delay={0.18} className="relative min-h-[34rem] lg:min-h-[40rem]">
@@ -118,32 +93,6 @@ export function HeroSection() {
               <div className="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur">
                 <Mic2 className="h-4 w-4" />
                 Profile Intro
-              </div>
-
-              {heroTags.map((tag, index) => (
-                <motion.span
-                  key={tag}
-                  className={`floating-tag tag-${index}`}
-                  animate={reduceMotion ? undefined : { y: [0, index % 2 ? 8 : -8, 0] }}
-                  transition={{ duration: 3 + index * 0.25, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  {tag}
-                </motion.span>
-              ))}
-
-              <div className="absolute inset-y-20 right-4 z-30 flex flex-col justify-center gap-3">
-                {socialLinks.slice(0, 5).map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={item.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-background/80 text-muted-foreground shadow-lg backdrop-blur transition hover:-translate-x-1 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <item.icon className="h-5 w-5" />
-                  </a>
-                ))}
               </div>
 
               <div className="absolute inset-x-0 bottom-24 top-16 z-10 grid place-items-center">
