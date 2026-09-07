@@ -9,6 +9,7 @@ Modern interactive portfolio for Vipul Nikam, built from the July 2026 resume an
 - TypeScript
 - Tailwind CSS
 - Framer Motion
+- Lenis smooth scrolling
 - shadcn-style UI primitives
 
 ## Structure

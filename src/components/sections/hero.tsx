@@ -1,11 +1,12 @@
 import { Reveal } from "@/components/common/reveal";
+import { scrollToSection } from "@/components/common/smooth-scroll";
 import { heroRoles, metrics, profile } from "@/data/portfolio";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, Mic2, Send, Volume2 } from "lucide-react";
 import { useState } from "react";
 
 function scrollToContact() {
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  scrollToSection("#contact");
 }
 
 export function HeroSection() {
@@ -151,7 +152,7 @@ export function HeroSection() {
           className="rounded-full border border-border bg-card/60 p-3 backdrop-blur focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           animate={reduceMotion ? undefined : { y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity }}
-          onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() => scrollToSection("#about")}
         >
           <ArrowDown className="h-5 w-5" />
         </motion.button>
