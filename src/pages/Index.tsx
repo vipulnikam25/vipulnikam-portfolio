@@ -4,10 +4,20 @@ import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
 import { ExperienceSection } from "@/components/sections/experience";
 import { HeroSection } from "@/components/sections/hero";
-import { ProjectsSection } from "@/components/sections/projects";
 import { CredentialsSection } from "@/components/sections/proof";
-import { SkillsSection } from "@/components/sections/skills";
 import { profile } from "@/data/portfolio";
+import { lazy, Suspense } from "react";
+
+const SkillsSection = lazy(() =>
+  import("@/components/sections/skills").then((module) => ({ default: module.SkillsSection })),
+);
+const ProjectsSection = lazy(() =>
+  import("@/components/sections/projects").then((module) => ({ default: module.ProjectsSection })),
+);
+
+function SectionFallback() {
+  return <div className="section-shell bg-muted/20" aria-hidden="true" />;
+}
 
 const Index = () => {
   return (
@@ -16,8 +26,12 @@ const Index = () => {
         <SiteChrome />
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
+        <Suspense fallback={<SectionFallback />}>
+          <SkillsSection />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ProjectsSection />
+        </Suspense>
         <ExperienceSection />
         <CredentialsSection />
         <ContactSection />

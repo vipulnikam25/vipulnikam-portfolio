@@ -1,55 +1,66 @@
 import { Reveal } from "@/components/common/reveal";
 import { scrollToSection } from "@/components/common/smooth-scroll";
+import { InteractiveAvatar } from "@/components/visuals/interactive-avatar";
 import { heroRoles, metrics, profile } from "@/data/portfolio";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, Download, Mic2, Send, Volume2 } from "lucide-react";
-import { useState } from "react";
-
-function scrollToContact() {
-  scrollToSection("#contact");
-}
+import { ArrowDown, Download, MapPin, Send } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
   const reduceMotion = useReducedMotion();
   const [hasSpoken, setHasSpoken] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
+  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+
   const handleSpeak = () => {
-    if ("speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(profile.speechSummary);
-      utterance.rate = 0.92;
-      utterance.pitch = 1;
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
-      window.speechSynthesis.speak(utterance);
-    }
+    if (!("speechSynthesis" in window)) return;
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(profile.speechSummary);
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+    window.speechSynthesis.speak(utterance);
     setHasSpoken(true);
   };
 
   return (
-    <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden px-5 pb-20 pt-32 sm:px-8">
+    <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden px-5 pb-20 pt-28 sm:px-8 sm:pt-32">
       <div className="hero-grid absolute inset-0 -z-20" />
-      <div className="absolute left-1/2 top-20 -z-10 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute bottom-0 right-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-accent/10 blur-3xl" />
 
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="max-w-4xl">
-            <Reveal delay={0.05}>
-              <h1 className="text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-7xl lg:text-8xl">
+          <div className="min-w-0 max-w-4xl">
+            <Reveal delay={0.03}>
+              <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase text-muted-foreground">
+                <span className="inline-flex items-center gap-2 text-primary">
+                  <span className="h-2 w-2 bg-primary" />
+                  Available for opportunities
+                </span>
+                <span className="h-px w-8 bg-border" />
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  Pune, India
+                </span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.06}>
+              <h1 className="font-display text-balance text-5xl font-semibold text-foreground sm:text-7xl lg:text-8xl">
                 {profile.name}
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-5 flex flex-wrap items-center gap-3 text-xl font-semibold text-muted-foreground sm:text-3xl">
-                <span>Open to:</span>
-                <span className="relative inline-flex h-10 min-w-[18rem] max-w-full overflow-hidden text-primary">
+              <div className="mt-5 grid min-w-0 gap-1 text-xl font-semibold text-muted-foreground sm:flex sm:items-center sm:gap-3 sm:text-3xl">
+                <span className="shrink-0">Open to:</span>
+                <span className="relative block h-10 w-full min-w-0 overflow-hidden text-primary sm:w-auto sm:min-w-[18rem]">
                   <span className={reduceMotion ? "" : "role-rotator"}>
                     {heroRoles.map((role) => (
-                      <span key={role} className="block h-10">
+                      <span key={role} className="block h-10 whitespace-nowrap">
                         {role}
                       </span>
                     ))}
@@ -58,87 +69,45 @@ export function HeroSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.15}>
-              <p className="mt-8 max-w-3xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
+            <Reveal delay={0.14}>
+              <p className="mt-7 max-w-3xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
                 {profile.headline}
               </p>
             </Reveal>
 
-            <Reveal delay={0.2}>
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <Reveal delay={0.18}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={profile.resumeUrl}
                   download
-                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_20px_60px_hsl(var(--primary)/0.28)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_hsl(var(--primary)/0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="inline-flex items-center justify-center bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_20px_60px_hsl(var(--primary)/0.24)] transition hover:-translate-y-1 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
                 <button
                   type="button"
-                  onClick={scrollToContact}
-                  className="inline-flex items-center justify-center rounded-full border border-border bg-card/70 px-6 py-3 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  onClick={() => scrollToSection("#contact")}
+                  className="inline-flex items-center justify-center border border-border bg-card/75 px-6 py-3 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Send className="mr-2 h-4 w-4" />
                   Start a Conversation
                 </button>
               </div>
             </Reveal>
-
           </div>
 
-          <Reveal delay={0.18} className="relative min-h-[34rem] lg:min-h-[40rem]">
-            <div className="absolute inset-0 rounded-[2rem] border border-border/70 bg-card/50 shadow-2xl backdrop-blur-xl" />
-            <div className="avatar-stage absolute inset-3 overflow-hidden rounded-[1.6rem] border border-white/10">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,hsl(var(--primary)/0.24),transparent_34%),linear-gradient(145deg,hsl(var(--card)),hsl(var(--muted)))]" />
-              <div className="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur">
-                <Mic2 className="h-4 w-4" />
-                Profile Intro
-              </div>
-
-              <div className="absolute inset-x-0 bottom-24 top-16 z-10 grid place-items-center">
-                <motion.div
-                  className={`avatar-card relative h-80 w-80 rounded-[2rem] border border-primary/30 bg-background/40 p-3 shadow-[0_34px_90px_hsl(var(--primary)/0.22)] backdrop-blur md:h-96 md:w-96 ${isSpeaking ? "is-speaking" : ""}`}
-                  animate={reduceMotion ? undefined : { rotateY: [-4, 4, -4], rotateX: [2, -2, 2] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <img
-                    src={profile.avatarUrl}
-                    alt="3D avatar of Vipul Nikam"
-                    className="h-full w-full rounded-[1.45rem] object-cover"
-                  />
-                  <span className="mouth-pulse" aria-hidden="true" />
-                  <div className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-background/90 px-4 py-2 text-sm font-semibold text-foreground shadow-xl backdrop-blur">
-                    <span className="h-2 w-2 rounded-full bg-primary" />
-                    {isSpeaking ? "Introducing..." : "3D Portfolio Avatar"}
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="absolute bottom-5 left-5 right-5 z-20 rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Interactive Summary</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Hear a short intro based on my resume. Audio starts only when you choose it.
-                </p>
-                <button
-                  type="button"
-                  onClick={handleSpeak}
-                  className="mt-4 inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Volume2 className="mr-2 h-4 w-4" />
-                  {hasSpoken ? "Replay Summary" : "Hear My Summary"}
-                </button>
-              </div>
-            </div>
+          <Reveal delay={0.16} className="min-w-0">
+            <InteractiveAvatar hasSpoken={hasSpoken} isSpeaking={isSpeaking} onSpeak={handleSpeak} />
           </Reveal>
         </div>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-px overflow-hidden border border-border/70 bg-border/70 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((metric, index) => (
-            <Reveal key={metric.label} delay={0.1 + index * 0.05}>
-              <div className="rounded-2xl border border-border/70 bg-card/70 p-4 shadow-sm backdrop-blur-xl">
-                <p className="text-2xl font-bold text-foreground">{metric.value}</p>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">{metric.label}</p>
+            <Reveal key={metric.label} delay={0.08 + index * 0.04}>
+              <div className="h-full bg-card/90 p-5 backdrop-blur-xl">
+                <p className="font-display text-3xl font-semibold text-foreground">{metric.value}</p>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">{metric.label}</p>
               </div>
             </Reveal>
           ))}
@@ -149,8 +118,8 @@ export function HeroSection() {
         <motion.button
           type="button"
           aria-label="Scroll to about section"
-          className="rounded-full border border-border bg-card/60 p-3 backdrop-blur focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          animate={reduceMotion ? undefined : { y: [0, 8, 0] }}
+          className="border border-border bg-card/70 p-3 backdrop-blur focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          animate={reduceMotion ? undefined : { y: [0, 7, 0] }}
           transition={{ duration: 1.8, repeat: Infinity }}
           onClick={() => scrollToSection("#about")}
         >

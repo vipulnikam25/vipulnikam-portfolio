@@ -1,29 +1,53 @@
 import { Reveal } from "@/components/common/reveal";
 import { SectionHeading } from "@/components/common/section-heading";
 import { contactCards, profile } from "@/data/portfolio";
-import { Download, MessageCircle, Send } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2, Download, LoaderCircle, MessageCircle, Send, TriangleAlert } from "lucide-react";
+import { useState, type FormEvent } from "react";
+
+type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 export function ContactSection() {
   const [senderEmail, setSenderEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [feedback, setFeedback] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (status === "submitting") return;
 
-    const body = [
-      message.trim(),
-      "",
-      "----",
-      `Sender email: ${senderEmail.trim()}`,
-      "Sent from Vipul Nikam portfolio contact form.",
-    ].join("\n");
+    setStatus("submitting");
+    setFeedback("");
 
-    const composeUrl = new URL(profile.gmailComposeUrl);
-    composeUrl.searchParams.set("su", subject.trim());
-    composeUrl.searchParams.set("body", body);
-    window.open(composeUrl.toString(), "_blank", "noopener,noreferrer");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          senderEmail: senderEmail.trim(),
+          subject: subject.trim(),
+          message: message.trim(),
+          website,
+        }),
+      });
+      const payload = (await response.json().catch(() => null)) as { message?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(payload?.message || "Your message could not be sent. Please try again.");
+      }
+
+      setSenderEmail("");
+      setSubject("");
+      setMessage("");
+      setWebsite("");
+      setStatus("success");
+      setFeedback(payload?.message || "Message sent successfully. I will get back to you soon.");
+    } catch (error) {
+      setStatus("error");
+      setFeedback(error instanceof Error ? error.message : "Your message could not be sent. Please try again.");
+    }
   };
 
   return (
@@ -72,9 +96,9 @@ export function ContactSection() {
                     href={card.href}
                     target={card.href.startsWith("http") ? "_blank" : undefined}
                     rel={card.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="group flex h-full gap-4 rounded-3xl border border-border/70 bg-card/75 p-5 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group flex h-full gap-4 rounded-lg border border-border/70 bg-card/75 p-5 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-primary">
                       <card.icon className="h-6 w-6" />
                     </span>
                     <span className="min-w-0">
@@ -92,13 +116,13 @@ export function ContactSection() {
           <Reveal delay={0.1}>
             <form
               onSubmit={handleSubmit}
-              className="rounded-[2rem] border border-border/70 bg-card/80 p-5 shadow-2xl backdrop-blur-xl sm:p-7"
+              className="rounded-lg border border-border/70 bg-card/80 p-5 shadow-2xl backdrop-blur-xl sm:p-7"
             >
               <div className="mb-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Message Form</p>
-                <h3 className="mt-3 text-2xl font-semibold text-foreground">Send a quick enquiry</h3>
+                <p className="text-xs font-semibold uppercase text-primary">Message Form</p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-foreground">Send a quick enquiry</h3>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  This safely opens a Gmail draft addressed to me. Direct SMTP sending needs a serverless/backend endpoint so secrets are not exposed in the browser.
+                  Share the opportunity or project details here and the message will be delivered directly to my inbox.
                 </p>
               </div>
 
@@ -108,10 +132,11 @@ export function ContactSection() {
                   <input
                     required
                     type="email"
+                    maxLength={254}
                     value={senderEmail}
                     onChange={(event) => setSenderEmail(event.target.value)}
                     placeholder="hr@example.com"
-                    className="h-12 rounded-2xl border border-border bg-background/70 px-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
+                    className="h-12 rounded-md border border-border bg-background/70 px-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
                   />
                 </label>
 
@@ -120,10 +145,12 @@ export function ContactSection() {
                   <input
                     required
                     type="text"
+                    minLength={3}
+                    maxLength={160}
                     value={subject}
                     onChange={(event) => setSubject(event.target.value)}
                     placeholder="Opportunity for Data Engineer role"
-                    className="h-12 rounded-2xl border border-border bg-background/70 px-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
+                    className="h-12 rounded-md border border-border bg-background/70 px-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
                   />
                 </label>
 
@@ -131,21 +158,59 @@ export function ContactSection() {
                   Description
                   <textarea
                     required
+                    minLength={10}
+                    maxLength={5000}
                     rows={7}
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     placeholder="Tell me about the role, project, interview process, or collaboration."
-                    className="resize-none rounded-2xl border border-border bg-background/70 px-4 py-3 text-sm leading-7 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
+                    className="resize-none rounded-md border border-border bg-background/70 px-4 py-3 text-sm leading-7 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30"
+                  />
+                </label>
+
+                <label className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                  Website
+                  <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </label>
               </div>
 
+              {feedback ? (
+                <div
+                  className={`mt-5 flex items-start gap-3 rounded-md border px-4 py-3 text-sm ${
+                    status === "success"
+                      ? "border-emerald-500/35 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                      : "border-destructive/35 bg-destructive/10 text-destructive"
+                  }`}
+                  role={status === "error" ? "alert" : "status"}
+                  aria-live="polite"
+                >
+                  {status === "success" ? (
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+                  ) : (
+                    <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                  )}
+                  <span>{feedback}</span>
+                </div>
+              ) : null}
+
               <button
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_20px_60px_hsl(var(--primary)/0.25)] transition hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                disabled={status === "submitting"}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_20px_60px_hsl(var(--primary)/0.25)] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                <Send className="mr-2 h-4 w-4" />
-                Compose Email
+                {status === "submitting" ? (
+                  <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Send className="mr-2 h-4 w-4" />
+                )}
+                {status === "submitting" ? "Sending..." : status === "error" ? "Try Again" : "Send Message"}
               </button>
             </form>
           </Reveal>

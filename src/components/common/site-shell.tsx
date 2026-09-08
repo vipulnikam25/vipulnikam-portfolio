@@ -256,14 +256,14 @@ function FixedActionRail({ controlsVisible }: Pick<ScrollChromeState, "controlsV
     <>
       {!isVisible ? (
         <div
-          className="fixed right-0 top-1/2 z-40 hidden h-64 w-4 -translate-y-1/2 md:block"
+          className="fixed right-0 top-1/2 z-40 hidden h-64 w-4 -translate-y-1/2 xl:block"
           onMouseEnter={() => setIsPeeked(true)}
           aria-hidden="true"
         />
       ) : null}
 
       <aside
-        className={`fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2 rounded-full border border-border/70 bg-background/82 p-2 shadow-2xl backdrop-blur-xl transition-all duration-300 ease-out md:flex ${
+        className={`fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2 rounded-full border border-border/70 bg-background/82 p-2 shadow-2xl backdrop-blur-xl transition-all duration-300 ease-out xl:flex ${
           isVisible
             ? "translate-x-0 opacity-100"
             : "pointer-events-none translate-x-[calc(100%+1.5rem)] opacity-0"

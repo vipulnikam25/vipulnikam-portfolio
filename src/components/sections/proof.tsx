@@ -19,14 +19,14 @@ export function CredentialsSection() {
           <div className="grid gap-5 lg:grid-cols-3">
             {education.map((item, index) => (
               <Reveal key={`${item.level}-${item.school}`} delay={index * 0.06}>
-                <article className="flex h-full min-h-[24rem] flex-col rounded-3xl border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl">
-                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
+                <article className="flex h-full min-h-[24rem] flex-col rounded-lg border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl">
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-primary">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">{item.level}</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-foreground">{item.school}</h3>
+                  <p className="text-xs font-semibold uppercase text-primary">{item.level}</p>
+                  <h3 className="mt-3 font-display text-2xl font-semibold text-foreground">{item.school}</h3>
                   <p className="mt-2 text-muted-foreground">{item.stream}</p>
-                  <div className="mt-auto grid gap-3 rounded-2xl border border-border/70 bg-background/60 p-4 text-sm text-muted-foreground">
+                  <div className="mt-auto grid gap-3 rounded-md border border-border/70 bg-background/60 p-4 text-sm text-muted-foreground">
                     <span>{item.board}</span>
                     <span>{item.location}</span>
                     <span>{item.period}</span>
@@ -52,11 +52,11 @@ export function CredentialsSection() {
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {certifications.map((cert, index) => (
               <Reveal key={`${cert.title}-${cert.issuer}`} delay={index * 0.035}>
-                <article className="group h-full rounded-3xl border border-border/70 bg-card/70 p-5 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-primary/40">
+                <article className="group h-full rounded-lg border border-border/70 bg-card/70 p-5 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-primary/40">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{cert.badge}</p>
-                      <h3 className="mt-3 text-lg font-semibold text-foreground">{cert.title}</h3>
+                      <p className="text-xs font-semibold uppercase text-primary">{cert.badge}</p>
+                      <h3 className="mt-3 font-display text-lg font-semibold text-foreground">{cert.title}</h3>
                     </div>
                     {cert.featured ? (
                       <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
@@ -76,19 +76,19 @@ export function CredentialsSection() {
       <section id="publication" className="section-shell">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <article className="overflow-hidden rounded-3xl border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl md:p-8">
+            <article className="overflow-hidden rounded-lg border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl md:p-8">
               <div className="grid gap-8 lg:grid-cols-[0.35fr_1fr] lg:items-center">
                 <div>
-                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
+                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-primary">
                     <publication.icon className="h-7 w-7" />
                   </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Publication</p>
+                  <p className="text-xs font-semibold uppercase text-primary">Publication</p>
                   <p className="mt-3 text-sm font-medium text-muted-foreground">
                     {publication.publisher} - {publication.date}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold text-foreground md:text-3xl">{publication.title}</h3>
+                  <h3 className="font-display text-2xl font-semibold text-foreground md:text-3xl">{publication.title}</h3>
                   <p className="mt-5 text-sm leading-7 text-muted-foreground">{publication.description}</p>
                   <a
                     href={publication.link}
