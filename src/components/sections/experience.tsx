@@ -21,27 +21,31 @@ export function ExperienceSection() {
           <div className="space-y-8">
             {experiences.map((experience, index) => (
               <Reveal key={`${experience.role}-${experience.period}`} delay={index * 0.08}>
-                <article className="relative rounded-3xl border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl md:ml-16 md:p-8">
+                <article className="relative rounded-lg border border-border/70 bg-card/75 p-6 shadow-sm backdrop-blur-xl md:ml-16 md:p-8">
                   <div className="absolute -left-[4.15rem] top-8 hidden h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-background text-primary shadow-[0_0_32px_hsl(var(--primary)/0.2)] md:flex">
                     <BriefcaseBusiness className="h-5 w-5" />
                   </div>
 
                   <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                      <p className="text-sm font-semibold uppercase text-primary">
                         {experience.type}
                       </p>
-                      <h3 className="mt-3 text-2xl font-semibold text-foreground sm:text-3xl">
+                      <h3 className="mt-3 font-display text-2xl font-semibold text-foreground sm:text-3xl">
                         {experience.role}
                       </h3>
                       <a
                         href={experience.companyUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-4 inline-flex items-center gap-3 rounded-2xl border border-border/70 bg-background/60 px-4 py-3 text-left transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="mt-4 inline-flex items-center gap-3 rounded-md border border-border/70 bg-background/60 px-4 py-3 text-left transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary text-sm font-black text-primary-foreground">
-                          {experience.companyMark}
+                        <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-md border border-border bg-white p-1.5">
+                          <img
+                            src={experience.companyLogo}
+                            alt="Plainsurf Solutions logo"
+                            className="h-full w-full object-contain"
+                          />
                         </span>
                         <span>
                           <span className="block text-base font-semibold text-foreground">{experience.company}</span>
@@ -73,8 +77,8 @@ export function ExperienceSection() {
                         </li>
                       ))}
                     </ul>
-                    <div className="rounded-2xl border border-border/70 bg-background/60 p-4">
-                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                    <div className="rounded-md border border-border/70 bg-background/60 p-4">
+                      <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                         Stack
                       </p>
                       <div className="flex flex-wrap gap-2">

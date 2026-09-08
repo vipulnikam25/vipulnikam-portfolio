@@ -21,6 +21,7 @@ import healthMlImage from "@/assets/projects/health-ml.svg";
 import microserviceImage from "@/assets/projects/microservice.svg";
 import personaMlImage from "@/assets/projects/persona-ml.svg";
 import studentFeedbackImage from "@/assets/projects/student-feedback.svg";
+import plainsurfLogo from "@/assets/brands/plainsurf-logo.png";
 
 export const profile = {
   name: "Vipul Nikam",
@@ -34,7 +35,7 @@ export const profile = {
   whatsapp: "https://wa.me/918208106900",
   resumeUrl: "/vipul-nikam-resume-2026-july.pdf",
   imageUrl: "/profile-pic.png",
-  avatarUrl: "/avatar-3d.png",
+  avatarUrl: "/avatar-3d-display.jpg",
   github: "https://github.com/vipulnikam25",
   linkedin: "https://www.linkedin.com/in/vipul-nikam-b06ab8212/",
   facebook: "https://www.facebook.com/vipul.nikam.526/",
@@ -170,7 +171,7 @@ export const experiences = [
     role: "Associate Data Engineer",
     company: "Plainsurf Solutions PVT",
     companyUrl: "https://plainsurf.com/",
-    companyMark: "PS",
+    companyLogo: plainsurfLogo,
     location: "Pune, Maharashtra, India",
     period: "April 2025 - Present",
     type: "Full-time - Backend, Data, Cloud & Automation Projects",
@@ -187,7 +188,7 @@ export const experiences = [
     role: "Data Engineer Intern",
     company: "Plainsurf Solutions PVT",
     companyUrl: "https://plainsurf.com/",
-    companyMark: "PS",
+    companyLogo: plainsurfLogo,
     location: "Pune, Maharashtra, India",
     period: "September 2024 - March 2025",
     type: "Internship",
@@ -210,9 +211,15 @@ export const projects = [
     description:
       "Designed and implemented a production-ready FastAPI service that connects with MySQL, PostgreSQL, and MongoDB through a modular backend structure. The project focuses on secure CRUD operations, consistent API behavior, reusable database configuration, JWT authentication, and role-based access control.",
     impact: "Created a flexible backend foundation for teams that need one secure service layer across multiple database engines.",
+    caseStudy: {
+      challenge: "Provide one consistent and secure CRUD interface while supporting relational and document database engines with different connection patterns.",
+      approach: "Separated routing, authentication, authorization, configuration, and database adapters so each engine could evolve without changing the public API contract.",
+      flow: ["API Client", "JWT + RBAC", "FastAPI Service", "Database Adapter", "MySQL · PostgreSQL · MongoDB"],
+    },
     stack: ["FastAPI", "Python", "JWT", "RBAC", "MySQL", "PostgreSQL", "MongoDB"],
     github: "https://github.com/vipulnikam25/Database-Connection-Microservice",
     image: microserviceImage,
+    imageAlt: "Architecture illustration connecting one FastAPI service to MySQL, PostgreSQL, and MongoDB",
     accent: "cyan",
   },
   {
@@ -222,9 +229,15 @@ export const projects = [
     description:
       "Built a Django-based analytics application where users can upload CSV datasets, clean missing values, normalize date and numeric fields, generate descriptive statistics, and choose dynamic visualizations. AJAX interactions keep the analysis flow responsive without forcing full page reloads.",
     impact: "Turned raw spreadsheet-style data into a faster browser-based analysis and reporting workflow.",
+    caseStudy: {
+      challenge: "Make inconsistent CSV data usable for analysis without requiring users to prepare it manually or leave the browser workflow.",
+      approach: "Combined upload validation, Pandas-based cleaning and normalization, descriptive statistics, and AJAX-driven visualization selection in a Django application.",
+      flow: ["CSV Upload", "Validation", "Pandas Cleaning", "Statistics", "Interactive Charts"],
+    },
     stack: ["Django", "Python", "Pandas", "AJAX", "Data Visualization", "Statistics"],
     github: "https://github.com/vipulnikam25/Django-CSV-Analysis-Project",
     image: csvAnalyticsImage,
+    imageAlt: "Analytics dashboard illustration showing CSV processing and data charts",
     accent: "teal",
   },
   {
@@ -234,9 +247,15 @@ export const projects = [
     description:
       "Created a recruitment-focused ML system that analyzes resume data and online assessment results to forecast candidate personas and suitability. The solution applies preprocessing, feature extraction, Logistic Regression, and Random Forest classification to support more structured screening decisions.",
     impact: "Extended into a published research project on candidate persona forecasting through resume/CV analysis.",
+    caseStudy: {
+      challenge: "Convert resume information and assessment results into structured features that could support more consistent candidate-persona forecasting.",
+      approach: "Prepared resume data, extracted model-ready features, compared Logistic Regression and Random Forest classification, and documented the work as published research.",
+      flow: ["Resume Data", "Preprocessing", "Feature Extraction", "ML Models", "Persona Forecast"],
+    },
     stack: ["Python", "Machine Learning", "Scikit-Learn", "Logistic Regression", "Random Forest"],
     github: "https://github.com/vipulnikam25/Persona-Prediction-Via-Resume-Analysis-Using-ML",
     image: personaMlImage,
+    imageAlt: "Machine-learning pipeline illustration for resume analysis and persona prediction",
     accent: "lime",
   },
   {
@@ -246,9 +265,16 @@ export const projects = [
     description:
       "Developed a healthcare-oriented machine learning model using Python and XGBoost to classify Parkinson's disease presence from structured biomedical features. The workflow includes data scaling, train-test validation, model fitting, and performance-focused evaluation.",
     impact: "Demonstrated practical AI/ML ability in a sensitive, real-world prediction domain.",
+    caseStudy: {
+      challenge: "Classify Parkinson's disease indicators from structured biomedical measurements while maintaining a clear, reproducible ML workflow.",
+      approach: "Applied feature scaling, a controlled train-test split, XGBoost classification, and performance evaluation to the structured dataset.",
+      flow: ["Biomedical Data", "Feature Scaling", "Train / Test Split", "XGBoost", "Evaluation"],
+    },
     stack: ["Python", "XGBoost", "Classification", "Feature Scaling"],
     github: profile.github,
+    repositoryIsProfile: true,
     image: healthMlImage,
+    imageAlt: "Predictive machine-learning illustration for Parkinson's disease detection",
     accent: "blue",
   },
   {
@@ -258,9 +284,16 @@ export const projects = [
     description:
       "Built a web application for collecting student feedback, organizing structured responses, and generating faculty-level reports. The project helped translate a manual academic feedback workflow into a cleaner browser-based reporting system.",
     impact: "Strengthened early full-stack fundamentals around forms, reporting, and user-facing workflows.",
+    caseStudy: {
+      challenge: "Replace a manual academic feedback process with a structured interface that could organize responses and support faculty-level reporting.",
+      approach: "Built a browser-based form and reporting workflow using core web technologies, emphasizing clear data entry and usable output.",
+      flow: ["Student Form", "Validation", "Feedback Records", "Aggregation", "Faculty Report"],
+    },
     stack: ["HTML", "CSS", "JavaScript", "Full Stack"],
     github: profile.github,
+    repositoryIsProfile: true,
     image: studentFeedbackImage,
+    imageAlt: "Web application illustration for collecting and reporting student feedback",
     accent: "slate",
   },
 ];
