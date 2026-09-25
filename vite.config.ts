@@ -10,6 +10,8 @@ export default defineConfig(({ mode }) => {
   const port = Number.isInteger(configuredPort) && configuredPort > 0 ? configuredPort : 8080;
 
   return {
+    base: "/vipulnikam-portfolio/",
+    
     server: {
       host: "::",
       port,
